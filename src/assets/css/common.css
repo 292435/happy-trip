@@ -8,6 +8,8 @@ body {
   --primary-color: #ff9645;
   --van-primary-color: var(--primary-color);
   --van-nav-bar-title-text-color: var(--primary-color) !important;
+  --van-index-anchor-background:#fff;
+  /* --van-index-bar-index-font-size:12px !important; */
   /* --van-tabs-bottom-bar-height: 0 !important; */
   /* --van-tabs-line-height: 60px !important; */
   --van-danger-color: var(--primary-color) !important;
