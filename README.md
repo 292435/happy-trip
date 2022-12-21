@@ -27,5 +27,9 @@ npm run dev
 ```sh
 npm run build
 ```
+<<<<<<< HEAD
 
 ssssssssssssssssss
+=======
+=========-----------==========
+>>>>>>> 48b52fe87e15aa6495d9eab03b1478d60510e114
