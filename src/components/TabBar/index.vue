@@ -1,6 +1,6 @@
 <template>
   <div class="tabBar">
-    <van-tabbar v-model="active" active-color="#E87940">
+    <van-tabbar v-model="active" active-color="#E87940" route>
       <van-tabbar-item name="home" to="/home" icon="home-o"
         ><span>首页</span>
         <template #icon> <i class="iconfont icon-shouye"></i> </template
