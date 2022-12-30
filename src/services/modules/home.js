@@ -1,15 +1,22 @@
-import HYRequest from '@/services/request/index'
-export function getHomeCategoriesAPI() {
-  return HYRequest.get({
-    url: '/home/categories'
+import hyRequest from '../request'
+
+export function getHomeHotSuggests() {
+  return hyRequest.get({ 
+    url: "/home/hotSuggests" 
   })
 }
-// 获取房屋列表
-export function getHomeListAPI(page = 1, offset = 0) {
-  return HYRequest.get({
-    url: '/home/houselist',
+
+export function getHomeCategories() {
+  return hyRequest.get({
+    url: "/home/categories"
+  })
+}
+
+export function getHomeHouselist(currentPage) {
+  return hyRequest.get({
+    url: "/home/houselist",
     params: {
-      page: page
+      page: currentPage
     }
   })
 }

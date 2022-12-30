@@ -1,5 +1,3 @@
-// const baseURL = "http://localhost:1888/api"
-const baseURL = 'http://123.207.32.32:1888/api'
-const TIMEOUT = 5000
-
-export { baseURL, TIMEOUT }
+export const BASE_URL = "http://123.207.32.32:1888/api"
+// export const BASE_URL = "http://codercba.com:1888/api"
+export const TIMEOUT = 10000 

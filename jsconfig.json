@@ -1,15 +1,15 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    // "target": "es5",
     "module": "esnext",
     "baseUrl": "./",
     "moduleResolution": "node",
+    "jsx": "preserve",
     "paths": {
       "@/*": [
         "src/*"
       ]
     },
-    "jsx": "preserve",
     "lib": [
       "esnext",
       "dom",

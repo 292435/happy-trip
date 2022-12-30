@@ -4,6 +4,10 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
 
-<style lang="less" scoped></style>
+</script>
+
+<style lang="less" scoped>
+
+</style>

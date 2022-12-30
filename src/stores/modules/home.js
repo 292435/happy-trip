@@ -1,33 +1,30 @@
-import { defineStore } from 'pinia'
-import {
-  getHotSuggestAPI,
-  getHomeCategoriesAPI,
-  getHomeListAPI
-} from '@/services/index'
-const useHomeStore = defineStore('home', {
+import { getHomeHotSuggests, getHomeCategories, getHomeHouselist } from "@/services";
+import { defineStore } from "pinia";
+
+const useHomeStore = defineStore("home", {
   state: () => ({
     hotSuggests: [],
     categories: [],
-    homeList: [],
-    currentPage: 1
+
+    currentPage: 1,
+    houselist: []
   }),
   actions: {
-    // 获取热门推荐数据
-    async fetchHotSuggests() {
-      const res = await getHotSuggestAPI()
+    async fetchHotSuggestData() {
+      const res = await getHomeHotSuggests()
       this.hotSuggests = res.data
     },
-    // 获取分类数据
-    async fetchHomeCategories() {
-      const res = await getHomeCategoriesAPI()
-      // console.log('11', res.data)
+    async fetchCategoriesData() {
+      const res = await getHomeCategories()
       this.categories = res.data
     },
-    // 获取房屋列表数据
-    async fetchHomeList() {
-      const res = await getHomeListAPI(this.currentPage++)
-      this.homeList = [...this.homeList, ...res.data]
+    async fetchHouselistData() {
+      const res = await getHomeHouselist(this.currentPage)
+      this.houselist.push(...res.data)
+      this.currentPage++
     }
   }
 })
+
 export default useHomeStore
+

@@ -1,40 +1,29 @@
-body {
-  font-family: PingFangSC-Regular, Helvetica Neue, sans-serif;
-  font-size: 14px;
-  background-color: #f7f8fb;
-}
-
 :root {
-  --them-gradient:linear-gradient(90deg,#fa8c1d,#fcaf3f);
-  --line-color:#e1e1e3;
-  --primary-color: #ff9645;
+  --primary-color: #ff9854;
+  --line-color: #faf8f9;
+  --theme-linear-gradient: linear-gradient(90deg, #fa8c1d, #fcaf3f);
+
+  /* 全局修改: 任何地方只要用到-van-tabbar-item-icon-size都会被修改掉 */
+  /* --van-tabbar-item-icon-size: 30px !important; */
+
+  /* 全局修改: 修改search样式 */
   --van-primary-color: var(--primary-color);
-  --van-nav-bar-title-text-color: var(--primary-color) !important;
-  --van-index-anchor-background:#fff;
-  /* --van-index-bar-index-font-size:12px !important; */
-  /* --van-tabs-bottom-bar-height: 0 !important; */
-  /* --van-tabs-line-height: 60px !important; */
-  --van-danger-color: var(--primary-color) !important;
-  /* dropdown-menu  */
-  --van-dropdown-menu-height: 44px !important;
-  --van-dropdown-menu-title-font-size: 13px !important;
-  --van-dropdown-menu-title-text-color: #333 !important;
-  /* sidebar */
-  --van-sidebar-width: 112px !important;
-  --van-sidebar-font-size: 14px !important;
-  --van-sidebar-text-color: #333 !important;
-  --van-sidebar-selected-text-color: var(--primary-color) !important;
-  --van-sidebar-background-color: #f8f8f8 !important;
-  --van-sidebar-selected-border-width: 4px !important;
-  --van-sidebar-selected-border-height: 4px !important;
-
-  --van-search-input-height: 30px !important;
-  --van-search-padding: 10px !important;
   --van-search-left-icon-color: var(--primary-color) !important;
-
-  /* tabs */
-  --van-tabs-line-height: 50px !important;
 }
+
+body {
+  font-size: 14px;
+}
+
+.top-page {
+  position: relative;
+  z-index: 9;
+  height: 100vh;
+  background-color: #fff;
+
+  overflow-y: auto;
+}
+
 .bottom-gray-line {
   border-bottom: 1px solid var(--line-color);
 }
@@ -44,33 +33,4 @@ body {
   width: 12px;
   height: 12px;
   background: url(../img/detail/icon_check.png) 0 0 / 100% 100%;
-}
-
-.detail_icon_chat {
-  display: inline-block;
-  width: 17px;
-  height: 17px;
-  background: url(../img/detail/icon_chat.png) 0 0 / 100% 100%;
-}
-
-.detail_icon_order {
-  display: block;
-  width: 14px;
-  height: 17px;
-  background: url(../img/detail/icon_order.png) 0 0 / 100% 100%;
-}
-
-.ellipsis-text-1 {
-  overflow: hidden;
-  word-wrap: normal;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
-.ellipsis-text-2 {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
 }

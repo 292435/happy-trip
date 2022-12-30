@@ -1,9 +1,10 @@
-import HYRequest from '@/services/request'
-export function getDetailInfosAPI(id) {
-  return HYRequest.get({
-    url: 'detail/infos',
+import hyRequest from '../request'
+
+export function getDetailInfos(houseId) {
+  return hyRequest.get({
+    url: "/detail/infos",
     params: {
-      houseId: id
+      houseId
     }
   })
 }

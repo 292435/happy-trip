@@ -1,14 +1,18 @@
-import { defineStore } from 'pinia'
+import { defineStore } from "pinia";
+
 const startDate = new Date()
 const endDate = new Date()
 endDate.setDate(startDate.getDate() + 1)
-const useMainStore = defineStore('main', {
+
+const useMainStore = defineStore("main", {
   state: () => ({
-    //入住时间和离店时间
+    token: "",
+
     startDate: startDate,
     endDate: endDate,
-    // 请求加载标识
-    loading: false
-  })
+
+    isLoading: false
+  }),
 })
+
 export default useMainStore

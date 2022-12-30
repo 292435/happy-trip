@@ -1,13 +1,13 @@
 <template>
-  <div class="search-bar">
+  <div class="search">
     <div class="select-time">
       <div class="item start">
-        <span class="name">住</span>
-        <span class="date">{{ startDateStr }}</span>
+        <div class="name">住</div>
+        <div class="date">{{ startDateStr }}</div>
       </div>
       <div class="item end">
-        <span class="name">离</span>
-        <span class="date">{{ endDateStr }}</span>
+        <div class="name">离</div>
+        <div class="date">{{ endDateStr }}</div>
       </div>
     </div>
     <div class="content">
@@ -20,24 +20,27 @@
 </template>
 
 <script setup>
-import useMainStore from '@/stores/modules/main'
-import { formatDate } from '@/utils/format-date'
-import { computed } from '@vue/runtime-core'
-import { storeToRefs } from 'pinia'
+import useMainStore from '@/stores/modules/main';
+import { formatMonthDay } from '@/utils/format_date';
+import { computed } from '@vue/reactivity';
+import { storeToRefs } from 'pinia';
+
 const mainStore = useMainStore()
 const { startDate, endDate } = storeToRefs(mainStore)
-const startDateStr = computed(() => formatDate(startDate.value, 'MM.DD'))
-const endDateStr = computed(() => formatDate(endDate.value, 'MM.DD'))
+const startDateStr = computed(() => formatMonthDay(startDate.value, "MM.DD"))
+const endDateStr = computed(() => formatMonthDay(endDate.value, "MM.DD"))
+
 </script>
 
 <style lang="less" scoped>
-.search-bar {
+
+.search {
   display: flex;
   flex-direction: row;
   align-items: center;
 
   height: 45px;
-  line-height: 45px;
+  line-height:45px;
 
   padding: 0 10px;
   font-size: 14px;
@@ -45,6 +48,19 @@ const endDateStr = computed(() => formatDate(endDate.value, 'MM.DD'))
 
   border-radius: 6px;
   background: #f2f4f6;
+
+  .left {
+    // max-width: 80px;
+
+    font-weight: 500;
+    min-width: 30px;
+    font-size: 14px;
+    padding-right: 6px;
+    margin-right: 5px;
+    border-right: 1px solid #fff;
+    color: #333;
+    white-space: nowrap;
+  }
 
   .select-time {
     display: flex;
@@ -69,7 +85,7 @@ const endDateStr = computed(() => formatDate(endDate.value, 'MM.DD'))
     }
 
     .end .date::after {
-      content: ' ';
+      content: " ";
       width: 0;
       height: 0;
       border: 4px solid #666;
@@ -94,7 +110,19 @@ const endDateStr = computed(() => formatDate(endDate.value, 'MM.DD'))
 
     .keyword {
       max-width: 155px;
-      font-size: 14px;
+      font-size: 12px;
+    }
+
+    .icon-cancel {
+      position: absolute;
+      top: 30%;
+      right: 0;
+      display: inline-block;
+      background-image: url(../../assets/img/sprite.png);
+      background-position: -92px -58.5px;
+      width: 14.5px;
+      height: 15px;
+      background-size: 125px 110px;
     }
   }
 
@@ -113,4 +141,5 @@ const endDateStr = computed(() => formatDate(endDate.value, 'MM.DD'))
     background-size: 207px 192px;
   }
 }
+
 </style>

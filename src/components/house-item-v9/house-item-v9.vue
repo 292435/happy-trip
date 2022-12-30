@@ -2,27 +2,14 @@
   <div class="house-item">
     <div class="item-inner">
       <div class="cover">
-        <img :src="itemData.image.url" alt="" />
+        <img :src="itemData.image.url" alt="">
       </div>
       <div class="info">
-        <div class="summary">
-          {{ itemData.summaryText }}
-        </div>
-        <div class="name">
-          {{ itemData.houseName }}
-        </div>
-        <div class="final">
-          <div class="comment">
-            <van-rate
-              :model-value="commentScore"
-              color="#ffffff"
-              size="10px"
-              readonly
-              allow-half
-            />
-            <!-- {{ itemData.commentScore }} -->
-          </div>
-          <div class="finalPrice">￥{{ itemData.finalPrice }}</div>
+        <div class="summary">{{ itemData.summaryText }}</div>
+        <div class="name">{{ itemData.houseName }}</div>
+        <div class="price">
+          <van-rate :model-value="itemScore" color="#fff" :size="15" readonly allow-half />
+          <div class="new">¥ {{ itemData.finalPrice }}</div>
         </div>
       </div>
     </div>
@@ -30,56 +17,62 @@
 </template>
 
 <script setup>
-import { computed } from '@vue/runtime-core'
+import { computed } from '@vue/reactivity';
+
 
 const props = defineProps({
   itemData: {
     type: Object,
-    default: () => {}
+    default: () => ({})
   }
 })
-const commentScore = computed(() => {
+
+const itemScore = computed(() => {
   return Number(props.itemData.commentScore)
 })
+
 </script>
 
 <style lang="less" scoped>
 .house-item {
-  position: relative;
   width: 50%;
+
   .item-inner {
+    position: relative;
     margin: 5px;
+    background: #fff;
+    border-radius: 6px;
+    overflow: hidden;
 
     .cover {
       img {
         width: 100%;
-        border-radius: 5px;
       }
     }
+
     .info {
-      color: #fff;
-      font-weight: 500;
       position: absolute;
-      padding: 0 5px 5px;
-      bottom: 3%;
+      bottom: 0;
+      padding: 8px 10px;
+      color: #fff;
+
       .summary {
         font-size: 12px;
       }
+
       .name {
-        line-height: 1.2;
-        font-size: 14px;
-        margin: 6px auto;
-        overflow: hidden; //超出隐藏
-        text-overflow: ellipsis; //溢出显示省略号
-        white-space: normal; //常规默认，会折行
+        margin: 5px 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
         display: -webkit-box;
-        -webkit-box-orient: vertical; //子元素排列 vertical（竖排）orhorizontal（横排）
-        -webkit-line-clamp: 2; /*内容限制的行数 需要几行写几就行*/
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
       }
-      .final {
+
+      .price {
         display: flex;
         justify-content: space-between;
-        padding: 0 10px;
+        margin-top: 10px;
       }
     }
   }

@@ -1,69 +1,53 @@
 import axios from 'axios'
-// import { useLoadingStore } from '@/store/modules/loading'
-import { baseURL, TIMEOUT } from './config'
+import { BASE_URL, TIMEOUT } from './config'
 import useMainStore from '@/stores/modules/main'
-import { storeToRefs } from 'pinia'
 
 const mainStore = useMainStore()
-const { loading } = storeToRefs(mainStore)
-// const loadingStore = useLoadingStore()
+
 class HYRequest {
-  constructor(baseURL) {
+  constructor(baseURL, timeout=10000) {
     this.instance = axios.create({
       baseURL,
-      timeout: TIMEOUT
+      timeout
     })
-    // 请求拦截
-    this.instance.interceptors.request.use(
-      (config) => {
-        loading.value = true
-        console.log('进入请求拦截')
-        return config
-      },
-      (error) => {
-        loading.value = false
-        Promise.reject(error)
-      }
-    )
-    // 响应拦截
-    this.instance.interceptors.response.use(
-      (response) => {
-        console.log('进入响应拦截')
-        loading.value = false
-        return response
-      },
-      (error) => {
-        //请求失败
-        loading.value = false
-        Promise.reject(error)
-      }
-    )
+
+    this.instance.interceptors.request.use(config => {
+      mainStore.isLoading = true
+      return config
+    }, err => {
+      return err
+    })
+    this.instance.interceptors.response.use(res => {
+      mainStore.isLoading = false
+      return res
+    }, err => {
+      mainStore.isLoading = false
+      return err
+    })
   }
+
   request(config) {
-    // loadingStore.changeLoading(true)
+    // mainStore.isLoading = true
     return new Promise((resolve, reject) => {
-      this.instance
-        .request(config)
-        .then((res) => {
-          resolve(res.data)
-        })
-        .catch((err) => {
-          console.log('request err:', err)
-          reject(err)
-        })
-        .finally(() => {
-          // loadingStore.changeLoading(false)
-        })
+      this.instance.request(config).then(res => {
+        resolve(res.data)
+        // mainStore.isLoading = false
+      }).catch(err => {
+        reject(err)
+        // mainStore.isLoading = false
+      })
     })
   }
 
   get(config) {
-    return this.request({ ...config, method: 'get' })
+    return this.request({ ...config, method: "get" })
   }
 
   post(config) {
-    return this.request({ ...config, method: 'post' })
+    return this.request({ ...config, method: "post" })
   }
 }
 
-export default new HYRequest(baseURL)
+export default new HYRequest(BASE_URL, TIMEOUT)
+
+

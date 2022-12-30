@@ -1,4 +1,4 @@
-# hr-trip
+# hy-trip
 
 This template should help get you started developing with Vue 3 in Vite.
 
@@ -26,11 +26,4 @@ npm run dev
 
 ```sh
 npm run build
-<<<<<<< HEAD
 ```
->>>>>>> aaaaaaaaaaaaaaaaaa
->>>>>>>
->>>>>>> 
-=======
-bbbbbbbbbbbbbbbbbb
->>>>>>> 0a50b4305e4d4ce1b39e04ce6b976d271ed0c8b8
